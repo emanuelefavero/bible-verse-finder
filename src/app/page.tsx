@@ -1,3 +1,7 @@
 export default function Home() {
-  return <>Bible Verse Finder</>
+  return (
+    <>
+      <h1 className='font-bold'>Bible Verse Finder</h1>
+    </>
+  )
 }

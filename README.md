@@ -4,8 +4,8 @@ This is a simple web application that I've built for my friend to help him find 
 
 ## Features
 
-- Search for Bible verses by book, chapter, and verse number.
-- View the full text of the verse along with its reference.
+- Search for Bible verses by word or phrase.
+- View each verse found and its reference.
 - Animations for a smooth user experience.
 
 ## How to Run
@@ -43,3 +43,15 @@ This is a simple web application that I've built for my friend to help him find 
 - Tailwind CSS
 - Bolls Bible API
 - Shadcn UI
+
+## License
+
+- [MIT](LICENSE.md)
+
+&nbsp;
+
+---
+
+&nbsp;
+
+[**Go To Top &nbsp; ⬆️**](#bible-verse-finder)

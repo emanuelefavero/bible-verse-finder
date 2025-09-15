@@ -1,5 +1,6 @@
 import SearchForm from '@/components/SearchForm'
 import { getVerses } from '@/lib/bible'
+import { Suspense } from 'react'
 
 type Props = {
   searchParams: Promise<{
@@ -9,7 +10,10 @@ type Props = {
 
 export default async function Home({ searchParams }: Props) {
   const { search } = await searchParams
-  const verses = await getVerses(search || '')
+  const json = await getVerses(search || '')
+
+  // TODO add exact_matches: exactMatches = 0, total = 0,
+  const { results: verses = [] } = json
 
   return (
     <>
@@ -18,8 +22,11 @@ export default async function Home({ searchParams }: Props) {
       <SearchForm />
 
       {/* Render verses */}
-      <p>{search}</p>
-      <code>{JSON.stringify(verses, null, 2)}</code>
+      {search && verses.length > 0 && (
+        <Suspense fallback={<p>Loading verses...</p>}>
+          <code>{JSON.stringify(json, null, 2)}</code>
+        </Suspense>
+      )}
     </>
   )
 }

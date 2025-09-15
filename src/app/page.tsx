@@ -12,7 +12,6 @@ export default async function Home({ searchParams }: Props) {
   const { search } = await searchParams
   const json = await getVerses(search || '')
 
-  // TODO add exact_matches: exactMatches = 0, total = 0,
   const { results: verses = [] } = json
 
   return (

@@ -41,7 +41,7 @@ This is a simple web application that I've built for my friend to help him find 
 - Next.js
 - React
 - Tailwind CSS
-- Bolls Bible API
+- Bolls Bible API ([API Example Output](docs/bolls-bible-api-example.md))
 - Shadcn UI
 
 ## License

@@ -1,5 +1,5 @@
 import SearchForm from '@/components/SearchForm'
-import { getVerses } from '@/lib/bible'
+import VersesLoader from '@/components/VersesLoader'
 import { Suspense } from 'react'
 
 type Props = {
@@ -10,20 +10,16 @@ type Props = {
 
 export default async function Home({ searchParams }: Props) {
   const { search } = await searchParams
-  const json = await getVerses(search || '')
-
-  const { results: verses = [] } = json
 
   return (
     <>
-      <h1 className='font-bold'>Bible Verse Finder</h1>
+      <h1 className='mb-4 font-bold'>Bible Verse Finder</h1>
 
       <SearchForm />
 
-      {/* Render verses */}
-      {search && verses.length > 0 && (
+      {search && (
         <Suspense fallback={<p>Loading verses...</p>}>
-          <code>{JSON.stringify(json, null, 2)}</code>
+          <VersesLoader search={search} />
         </Suspense>
       )}
     </>

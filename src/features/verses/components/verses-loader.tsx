@@ -1,5 +1,5 @@
-import { VersesList } from '@/components/verses/verses-list'
-import { getVerses } from '@/lib/bible'
+import { getVerses } from '@/features/verses/api'
+import { VersesList } from '@/features/verses/components/verses-list'
 
 type Props = {
   search?: string

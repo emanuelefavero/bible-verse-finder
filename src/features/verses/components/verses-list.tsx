@@ -1,5 +1,5 @@
-import { VerseItem } from '@/components/verses/verse-item'
-import type { Verse } from '@/types/verses'
+import { VerseItem } from '@/features/verses/components/verse-item'
+import type { Verse } from '@/features/verses/types'
 
 type Props = {
   verses: Verse[]

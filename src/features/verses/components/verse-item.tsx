@@ -1,4 +1,4 @@
-import type { Verse } from '@/types/verses'
+import type { Verse } from '@/features/verses/types'
 
 type Props = {
   verse: Verse

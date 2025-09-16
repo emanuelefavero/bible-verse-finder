@@ -1,5 +1,5 @@
-import { SearchForm } from '@/components/search-form'
-import { VersesLoader } from '@/components/verses/verses-loader'
+import { SearchForm } from '@/features/search/components/search-form'
+import { VersesLoader } from '@/features/verses/components/verses-loader'
 import { Suspense } from 'react'
 
 type Props = {

@@ -37,7 +37,9 @@ export default function RootLayout({
         >
           <Header />
 
-          <main className='px-2 py-2'>{children}</main>
+          <main className='mx-auto flex max-w-3xl flex-col items-center justify-center gap-8 px-4 py-16'>
+            {children}
+          </main>
         </ThemeProvider>
       </body>
     </html>

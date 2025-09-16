@@ -13,6 +13,8 @@ export default async function Home({ searchParams }: Props) {
 
   return (
     <>
+      <h1 className='text-3xl font-bold'>Find Bible Verses by Keyword</h1>
+
       <SearchForm />
 
       {search && (

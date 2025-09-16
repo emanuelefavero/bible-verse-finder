@@ -1,4 +1,4 @@
-import { ModeToggle } from '@/features/theme/components/mode-toggle'
+import { ModeToggle } from '@/features/theme/mode-toggle'
 
 export function Header() {
   return (

@@ -1,5 +1,5 @@
-import { Header } from '@/features/layout/components/header'
-import { ThemeProvider } from '@/features/theme/components/theme-provider'
+import { Header } from '@/components/header'
+import { ThemeProvider } from '@/features/theme/theme-provider'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
 import './globals.css'

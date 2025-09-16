@@ -1,4 +1,4 @@
-import { SearchForm } from '@/features/search/components/search-form'
+import { SearchForm } from '@/features/search/search-form'
 import { VersesLoader } from '@/features/verses/components/verses-loader'
 import { Suspense } from 'react'
 

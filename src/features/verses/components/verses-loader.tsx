@@ -1,4 +1,4 @@
-import { getVerses } from '@/features/verses/api'
+import { getVerses } from '@/features/verses/services/api'
 import { VersesList } from '@/features/verses/components/verses-list'
 
 type Props = {

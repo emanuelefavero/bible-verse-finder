@@ -1,11 +1,11 @@
-import VersesList from '@/components/VersesList'
+import { VersesList } from '@/components/verses/verses-list'
 import { getVerses } from '@/lib/bible'
 
 type Props = {
   search?: string
 }
 
-export default async function VersesLoader({ search = '' }: Props) {
+export async function VersesLoader({ search = '' }: Props) {
   const json = await getVerses(search)
   const { results: verses = [] } = json
 

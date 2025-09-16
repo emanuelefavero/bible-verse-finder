@@ -4,7 +4,7 @@ type Props = {
   verse: Verse
 }
 
-export default function VerseItem({ verse }: Props) {
+export function VerseItem({ verse }: Props) {
   return (
     <li key={verse.pk} className='rounded-md border border-foreground/20 p-4'>
       <p className='mb-2 italic'>&quot;{verse.text}&quot;</p>

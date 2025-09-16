@@ -1,3 +1,4 @@
+import VersesList from '@/components/VersesList'
 import { getVerses } from '@/lib/bible'
 
 type Props = {
@@ -10,5 +11,5 @@ export default async function VersesLoader({ search = '' }: Props) {
 
   if (!json || !verses.length) return <p>No verses found.</p>
 
-  return <code>{JSON.stringify(json, null, 2)}</code>
+  return <VersesList verses={verses} />
 }

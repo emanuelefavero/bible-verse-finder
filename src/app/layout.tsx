@@ -37,7 +37,7 @@ export default function RootLayout({
         >
           <Header />
 
-          <main>{children}</main>
+          <main className='px-2 py-2'>{children}</main>
         </ThemeProvider>
       </body>
     </html>

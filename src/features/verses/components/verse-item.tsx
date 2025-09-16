@@ -7,7 +7,14 @@ type Props = {
 export function VerseItem({ verse }: Props) {
   return (
     <li key={verse.pk} className='rounded-md border border-foreground/20 p-4'>
-      <p className='mb-2 italic'>&quot;{verse.text}&quot;</p>
+      {/* Text */}
+      <blockquote className='mb-2 italic'>
+        <span aria-hidden='true'>&quot;</span>
+        <span dangerouslySetInnerHTML={{ __html: verse.text }} />
+        <span aria-hidden='true'>&quot;</span>
+      </blockquote>
+
+      {/* Citation */}
       <p className='text-sm text-gray-500'>
         {verse.translation} - Book {verse.book}, Chapter {verse.chapter}, Verse{' '}
         {verse.verse}

@@ -13,7 +13,7 @@ export default async function Home({ searchParams }: Props) {
 
   return (
     <>
-      <h1 className='text-center text-3xl font-bold'>
+      <h1 className='scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance'>
         Find Bible Verses by Keyword
       </h1>
 

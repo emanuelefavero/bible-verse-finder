@@ -1,4 +1,7 @@
+'use client'
+
 import type { Verse } from '@/features/verses/types'
+import * as motion from 'motion/react-client'
 
 type Props = {
   verse: Verse
@@ -6,7 +9,13 @@ type Props = {
 
 export function VerseItem({ verse }: Props) {
   return (
-    <li key={verse.pk} className='flex flex-col gap-2 rounded-md p-4'>
+    <motion.li
+      key={verse.pk}
+      className='flex flex-col gap-2 rounded-md p-4'
+      initial={{ opacity: 0, y: 10 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 1 }}
+    >
       {/* Text */}
       <blockquote className='border-l-2 pl-6 italic'>
         <span aria-hidden='true'>&quot;</span>
@@ -19,6 +28,6 @@ export function VerseItem({ verse }: Props) {
         {verse.translation} - Book {verse.book}, Chapter {verse.chapter}, Verse{' '}
         {verse.verse}
       </p>
-    </li>
+    </motion.li>
   )
 }

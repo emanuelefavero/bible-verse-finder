@@ -1,5 +1,7 @@
 'use client'
 
+import { Button } from '@/components/ui/button'
+import { Input } from '@/components/ui/input'
 import { useRouter } from 'next/navigation'
 import { useState } from 'react'
 
@@ -18,21 +20,20 @@ export function SearchForm() {
 
   return (
     <form onSubmit={handleSubmit} className='flex flex-wrap gap-1'>
-      <input
+      <Input
         type='text'
         name='search'
         placeholder='Search word or phrase'
-        className='rounded-full border px-3 py-1'
         value={search}
         onChange={(e) => setSearch(e.target.value)}
         required
       />
-      <button
+      <Button
         type='submit'
-        className='cursor-pointer rounded-full bg-foreground px-4 py-1 text-background transition duration-200 active:scale-95'
+        // className='cursor-pointer rounded-full bg-foreground px-4 py-1 text-background transition duration-200 active:scale-95'
       >
         Search
-      </button>
+      </Button>
     </form>
   )
 }

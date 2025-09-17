@@ -19,8 +19,12 @@ export function SearchForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='flex gap-1'>
+    <form
+      onSubmit={handleSubmit}
+      className='flex flex-wrap gap-2 xs:flex-nowrap'
+    >
       <Input
+        className='xs:min-w-3xs'
         type='text'
         name='search'
         placeholder='Search word or phrase'

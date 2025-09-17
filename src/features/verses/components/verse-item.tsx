@@ -6,9 +6,9 @@ type Props = {
 
 export function VerseItem({ verse }: Props) {
   return (
-    <li key={verse.pk} className='rounded-md p-4'>
+    <li key={verse.pk} className='flex flex-col gap-2 rounded-md p-4'>
       {/* Text */}
-      <blockquote className='mb-2 border-l-2 pl-6 italic'>
+      <blockquote className='border-l-2 pl-6 italic'>
         <span aria-hidden='true'>&quot;</span>
         <span dangerouslySetInnerHTML={{ __html: verse.text }} />
         <span aria-hidden='true'>&quot;</span>

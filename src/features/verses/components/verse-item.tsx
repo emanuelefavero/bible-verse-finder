@@ -1,5 +1,3 @@
-'use client'
-
 import type { Verse } from '@/features/verses/types'
 import * as motion from 'motion/react-client'
 
@@ -8,12 +6,16 @@ type Props = {
 }
 
 export function VerseItem({ verse }: Props) {
+  const motionVariants = {
+    initial: { opacity: 0, x: 100 },
+    animate: { opacity: 1, x: 0 },
+  }
+
   return (
     <motion.li
       key={verse.pk}
       className='flex flex-col gap-2 rounded-md p-4'
-      initial={{ opacity: 0, x: 100 }}
-      animate={{ opacity: 1, x: 0 }}
+      variants={motionVariants}
       transition={{
         type: 'spring',
         bounce: 0.6, // Higher value = more bounce

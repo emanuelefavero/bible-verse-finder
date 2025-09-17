@@ -1,16 +1,30 @@
 import { VerseItem } from '@/features/verses/components/verse-item'
 import type { Verse } from '@/features/verses/types'
+import * as motion from 'motion/react-client'
 
 type Props = {
   verses: Verse[]
 }
 
 export function VersesList({ verses }: Props) {
+  const motionVariants = {
+    animate: {
+      transition: {
+        staggerChildren: 0.1,
+      },
+    },
+  }
+
   return (
-    <ul className='flex max-w-prose flex-wrap gap-4'>
+    <motion.ul
+      variants={motionVariants}
+      initial='initial'
+      animate='animate'
+      className='flex max-w-prose flex-wrap gap-4'
+    >
       {verses.map((verse) => (
         <VerseItem key={verse.pk} verse={verse} />
       ))}
-    </ul>
+    </motion.ul>
   )
 }

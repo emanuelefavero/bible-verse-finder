@@ -12,9 +12,14 @@ export function VerseItem({ verse }: Props) {
     <motion.li
       key={verse.pk}
       className='flex flex-col gap-2 rounded-md p-4'
-      initial={{ opacity: 0, y: 10 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ duration: 1 }}
+      initial={{ opacity: 0, x: 100 }}
+      animate={{ opacity: 1, x: 0 }}
+      transition={{
+        type: 'spring',
+        bounce: 0.6, // Higher value = more bounce
+        stiffness: 600, // Lower = softer spring
+        damping: 20, // Lower = less resistance
+      }}
     >
       {/* Text */}
       <blockquote className='border-l-2 pl-6 italic'>

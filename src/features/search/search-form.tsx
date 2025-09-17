@@ -32,7 +32,9 @@ export function SearchForm() {
         onChange={(e) => setSearch(e.target.value)}
         required
       />
-      <Button type='submit'>Search</Button>
+      <Button type='submit' className='w-full min-w-24 xs:w-fit'>
+        Search
+      </Button>
     </form>
   )
 }

@@ -19,7 +19,7 @@ export function SearchForm() {
   }
 
   return (
-    <form onSubmit={handleSubmit} className='flex flex-wrap gap-1'>
+    <form onSubmit={handleSubmit} className='flex gap-1'>
       <Input
         type='text'
         name='search'
@@ -28,12 +28,7 @@ export function SearchForm() {
         onChange={(e) => setSearch(e.target.value)}
         required
       />
-      <Button
-        type='submit'
-        // className='cursor-pointer rounded-full bg-foreground px-4 py-1 text-background transition duration-200 active:scale-95'
-      >
-        Search
-      </Button>
+      <Button type='submit'>Search</Button>
     </form>
   )
 }

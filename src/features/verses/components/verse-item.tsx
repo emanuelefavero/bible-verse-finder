@@ -3,11 +3,13 @@ import * as motion from 'motion/react-client'
 
 type Props = {
   verse: Verse
+  index: number
 }
 
-export function VerseItem({ verse }: Props) {
+export function VerseItem({ verse, index }: Props) {
+  const initialPosition = index % 2 === 0 ? 300 : -300 // Alternate left/right
   const motionVariants = {
-    initial: { opacity: 0, x: 100 },
+    initial: { opacity: 0, x: initialPosition },
     animate: { opacity: 1, x: 0 },
   }
 
@@ -19,7 +21,7 @@ export function VerseItem({ verse }: Props) {
       transition={{
         type: 'spring',
         bounce: 0.6, // Higher value = more bounce
-        stiffness: 600, // Lower = softer spring
+        stiffness: 400, // Lower = softer spring
         damping: 20, // Lower = less resistance
       }}
     >

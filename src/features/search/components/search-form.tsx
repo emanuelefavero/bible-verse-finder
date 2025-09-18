@@ -2,17 +2,17 @@
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { useSearchInputStore } from '@/features/search/store/useSearchInputStore'
 import { useRouter } from 'next/navigation'
-import { useState } from 'react'
 
 export function SearchForm() {
   const router = useRouter()
-  const [search, setSearch] = useState('')
+  const { searchInput, setSearchInput } = useSearchInputStore()
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (search.trim()) {
-      router.push(`/?search=${encodeURIComponent(search.trim())}`)
+    if (searchInput.trim()) {
+      router.push(`/?search=${encodeURIComponent(searchInput.trim())}`)
     } else {
       router.push('/')
     }
@@ -28,8 +28,8 @@ export function SearchForm() {
         type='text'
         name='search'
         placeholder='Search word or phrase'
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+        value={searchInput}
+        onChange={(e) => setSearchInput(e.target.value)}
         required
       />
       <Button type='submit' className='w-full min-w-24 xs:w-fit'>

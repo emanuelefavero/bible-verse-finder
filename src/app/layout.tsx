@@ -1,4 +1,4 @@
-import { Header } from '@/components/header'
+import { Header } from '@/components/header/header'
 import { ThemeProvider } from '@/features/theme/theme-provider'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'

@@ -1,4 +1,5 @@
 import { Header } from '@/components/header/header'
+import { DESCRIPTION, TITLE } from '@/config/app'
 import { ThemeProvider } from '@/features/theme/theme-provider'
 import type { Metadata } from 'next'
 import { Geist, Geist_Mono } from 'next/font/google'
@@ -15,8 +16,8 @@ const geistMono = Geist_Mono({
 })
 
 export const metadata: Metadata = {
-  title: 'Bible Verse Finder',
-  description: 'Find Bible verses by keyword',
+  title: TITLE,
+  description: DESCRIPTION,
 }
 
 export default function RootLayout({

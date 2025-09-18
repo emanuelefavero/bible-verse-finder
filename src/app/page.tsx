@@ -1,3 +1,4 @@
+import { DESCRIPTION } from '@/config/app'
 import { SearchForm } from '@/features/search/components/search-form'
 import { VersesLoader } from '@/features/verses/components/verses-loader'
 import { Suspense } from 'react'
@@ -14,7 +15,7 @@ export default async function Home({ searchParams }: Props) {
   return (
     <>
       <h1 className='scroll-m-20 text-center text-4xl font-extrabold tracking-tight text-balance'>
-        Find Bible Verses by Keyword
+        {DESCRIPTION}
       </h1>
 
       <SearchForm />

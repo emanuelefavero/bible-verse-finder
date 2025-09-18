@@ -10,7 +10,12 @@ type Props = React.ComponentPropsWithRef<typeof Button> & {
   className?: string
 }
 
-export function Logo({ className, variant = 'ghost' }: Props) {
+export function Logo({
+  className,
+  variant = 'ghost',
+  onClick,
+  ...props
+}: Props) {
   const router = useRouter()
   const { clearSearchInput } = useSearchInputStore()
 
@@ -23,7 +28,8 @@ export function Logo({ className, variant = 'ghost' }: Props) {
     <Button
       className={cn('font-bold', className)}
       variant={variant}
-      onClick={handleClick}
+      onClick={onClick ?? handleClick}
+      {...props}
     >
       {TITLE}
     </Button>

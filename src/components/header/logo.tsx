@@ -1,6 +1,7 @@
 'use client'
 
 import { Button } from '@/components/ui/button'
+import { TITLE } from '@/config/app'
 import { useSearchInputStore } from '@/features/search/store/useSearchInputStore'
 import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
@@ -20,11 +21,11 @@ export function Logo({ className, variant = 'ghost' }: Props) {
 
   return (
     <Button
-      variant={variant}
       className={cn('font-bold', className)}
+      variant={variant}
       onClick={handleClick}
     >
-      Bible Verse Finder
+      {TITLE}
     </Button>
   )
 }

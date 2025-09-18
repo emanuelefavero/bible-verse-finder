@@ -1,14 +1,30 @@
-import { cn } from '@/lib/utils'
-import Link from 'next/link'
+'use client'
 
-type Props = Omit<React.ComponentPropsWithRef<typeof Link>, 'href'> & {
+import { Button } from '@/components/ui/button'
+import { useSearchInputStore } from '@/features/search/store/useSearchInputStore'
+import { cn } from '@/lib/utils'
+import { useRouter } from 'next/navigation'
+
+type Props = React.ComponentPropsWithRef<typeof Button> & {
   className?: string
 }
 
-export function Logo({ className, ...props }: Props) {
+export function Logo({ className, variant = 'ghost' }: Props) {
+  const router = useRouter()
+  const { clearSearchInput } = useSearchInputStore()
+
+  const handleClick = () => {
+    clearSearchInput()
+    router.push('/')
+  }
+
   return (
-    <Link href='/' className={cn('font-bold', className)} {...props}>
+    <Button
+      variant={variant}
+      className={cn('font-bold', className)}
+      onClick={handleClick}
+    >
       Bible Verse Finder
-    </Link>
+    </Button>
   )
 }

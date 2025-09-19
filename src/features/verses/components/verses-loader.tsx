@@ -1,6 +1,7 @@
 import { VersesList } from '@/features/verses/components/verses-list'
 import { getVerses } from '@/features/verses/services/api'
 import type { VersesResponse } from '@/features/verses/types'
+import { VersesStats } from './verses-stats'
 
 type Props = {
   search?: string
@@ -18,10 +19,7 @@ export async function VersesLoader({ search = '' }: Props) {
 
   return (
     <>
-      <div className='flex gap-4 text-sm text-muted-foreground'>
-        <span>Exact matches: {exactMatches}</span>
-        <span>Verses found: {versesFound}</span>
-      </div>
+      <VersesStats exactMatches={exactMatches} versesFound={versesFound} />
       <VersesList verses={verses} />
     </>
   )

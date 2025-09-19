@@ -1,5 +1,5 @@
-import { getVerses } from '@/features/verses/services/api'
 import { VersesList } from '@/features/verses/components/verses-list'
+import { getVerses } from '@/features/verses/services/api'
 
 type Props = {
   search?: string

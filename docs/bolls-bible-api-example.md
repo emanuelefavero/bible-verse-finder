@@ -2,6 +2,8 @@
 
 [← Back to README](../README.md)
 
+- API Endpoint: `https://bolls.life/v2/find/NKJV?search=Immanuel&match_case=false&match_whole=true&limit=1&page=1`
+
 ```json
 {
   "results": [

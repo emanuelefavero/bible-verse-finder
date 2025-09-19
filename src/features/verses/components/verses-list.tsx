@@ -20,7 +20,7 @@ export function VersesList({ verses }: Props) {
       variants={motionVariants}
       initial='initial'
       animate='animate'
-      className='flex max-w-prose flex-wrap gap-4 overflow-x-hidden'
+      className='flex flex-wrap gap-12 overflow-x-hidden'
     >
       {verses.map((verse, index) => (
         <VerseItem key={verse.pk} verse={verse} index={index} />

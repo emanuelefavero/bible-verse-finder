@@ -12,8 +12,8 @@ export function SearchForm() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (searchInput.trim()) {
-      router.push(`/?search=${encodeURIComponent(searchInput.trim())}`)
+    if (searchInput) {
+      router.push(`/?search=${encodeURIComponent(searchInput)}`)
     } else {
       router.push('/')
     }

@@ -18,7 +18,7 @@ export function VersesStats({ exactMatches, versesFound }: Props) {
               : 'text-error-foreground',
           )}
         >
-          <CountUp to={versesFound} />
+          <CountUp to={versesFound} duration={0.5} />
         </span>
       </div>
       <div>
@@ -30,7 +30,7 @@ export function VersesStats({ exactMatches, versesFound }: Props) {
               : 'text-error-foreground',
           )}
         >
-          <CountUp to={exactMatches} />
+          <CountUp to={exactMatches} duration={0.5} />
         </span>
       </div>
     </div>

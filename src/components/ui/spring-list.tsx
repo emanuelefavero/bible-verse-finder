@@ -1,7 +1,7 @@
 import * as motion from 'motion/react-client'
-import { ReactNode } from 'react'
+import type { ComponentPropsWithRef, ReactNode } from 'react'
 
-type Props = {
+type Props = ComponentPropsWithRef<typeof motion.ul> & {
   staggerDelay?: number
   children: ReactNode
   className?: string

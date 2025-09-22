@@ -1,0 +1,2 @@
+# Bolls Bible API Example
+GET https://bolls.life/v2/find/NKJV?search=god&match_case=false&match_whole=true&limit=3&page=1

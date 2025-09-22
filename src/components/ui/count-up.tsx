@@ -3,7 +3,7 @@
 import { useInView, useMotionValue, useSpring } from 'motion/react'
 import { useEffect, useRef } from 'react'
 
-type Props = React.ComponentPropsWithRef<'span'> & {
+type Props = React.ComponentPropsWithoutRef<'span'> & {
   to: number
   from?: number
   direction?: 'up' | 'down'

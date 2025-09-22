@@ -31,6 +31,8 @@ export function SearchForm() {
         value={searchInput}
         onChange={(e) => setSearchInput(e.target.value)}
         required
+        minLength={3}
+        maxLength={200}
       />
       <Button type='submit' className='w-full min-w-24 xs:w-fit'>
         Search

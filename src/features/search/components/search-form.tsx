@@ -12,7 +12,7 @@ export function SearchForm() {
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
-    if (searchInput) {
+    if (isValidSearch && !isSearchEmpty) {
       router.push(`/?search=${encodeURIComponent(searchInput)}`)
     } else {
       router.push('/')

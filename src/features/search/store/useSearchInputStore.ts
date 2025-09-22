@@ -13,7 +13,7 @@ export const useSearchInputStore = create<SearchInputState>((set) => ({
   setSearchInput: (searchInput) => {
     const trimmed = searchInput.trim()
     set({
-      searchInput: trimmed,
+      searchInput,
       isValidSearch: trimmed.length >= 3 && trimmed.length <= 200,
       isSearchEmpty: trimmed.length === 0,
     })

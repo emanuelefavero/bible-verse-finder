@@ -12,15 +12,15 @@ type Props = {
   className?: string
 }
 
-export function StaggeredAnimationItem({
-  children,
-  index,
-  className = '',
+export function SpringListItem({
   springConfig = {
     bounce: 0.6, // Higher value = more bounce
     stiffness: 400, // Lower = softer spring
     damping: 20, // Lower = less resistance
   },
+  index,
+  children,
+  className = '',
 }: Props) {
   const initialPosition = index % 2 === 0 ? 300 : -300 // Alternate left/right
   const motionVariants = {

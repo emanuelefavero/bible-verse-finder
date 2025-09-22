@@ -1,4 +1,4 @@
-import { StaggeredAnimationItem } from '@/components/ui/staggered-animation-item'
+import { SpringListItem } from '@/components/ui/spring-list-item'
 import type { Verse } from '@/features/verses/types'
 
 type Props = {
@@ -8,10 +8,7 @@ type Props = {
 
 export function VerseItem({ verse, index }: Props) {
   return (
-    <StaggeredAnimationItem
-      index={index}
-      className='flex flex-col gap-2 rounded-md'
-    >
+    <SpringListItem index={index} className='flex flex-col gap-2 rounded-md'>
       {/* Text */}
       <blockquote className='border-l-2 pl-6 italic'>
         <span aria-hidden='true'>&quot;</span>
@@ -24,6 +21,6 @@ export function VerseItem({ verse, index }: Props) {
         {verse.translation} - Book {verse.book}, Chapter {verse.chapter}, Verse{' '}
         {verse.verse}
       </p>
-    </StaggeredAnimationItem>
+    </SpringListItem>
   )
 }

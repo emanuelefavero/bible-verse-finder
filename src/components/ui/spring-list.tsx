@@ -7,10 +7,10 @@ type Props = {
   className?: string
 }
 
-export function StaggeredAnimationContainer({
+export function SpringList({
+  staggerDelay = 0.1,
   children,
   className = '',
-  staggerDelay = 0.1,
 }: Props) {
   const motionVariants = {
     animate: {

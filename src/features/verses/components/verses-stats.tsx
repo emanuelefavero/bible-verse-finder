@@ -17,7 +17,7 @@ export function VersesStats({ exactMatches, versesFound }: Props) {
     exactMatches === biggerValue ? lowerStiffness : higherStiffness
 
   return (
-    <div className='mt-1 flex gap-4 text-xs font-semibold text-muted-foreground uppercase'>
+    <div className='mt-1 flex gap-2 text-xs font-semibold text-muted-foreground uppercase'>
       <div>
         Verses found:{' '}
         <CountUp
@@ -25,6 +25,7 @@ export function VersesStats({ exactMatches, versesFound }: Props) {
           duration={0.5}
           stiffness={versesFoundStiffness}
           className={cn(
+            'inline-block min-w-[4ch] text-left ml-0.5 tabular-nums',
             versesFound > 0
               ? 'text-success-foreground'
               : 'text-error-foreground',
@@ -38,6 +39,7 @@ export function VersesStats({ exactMatches, versesFound }: Props) {
           duration={0.5}
           stiffness={exactMatchesStiffness}
           className={cn(
+            'inline-block min-w-[4ch] text-left ml-0.5 tabular-nums',
             exactMatches > 0
               ? 'text-success-foreground'
               : 'text-error-foreground',

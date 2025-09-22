@@ -1,3 +1,4 @@
+import { CountUp } from '@/components/ui/count-up'
 import { cn } from '@/lib/utils'
 
 type Props = {
@@ -17,7 +18,7 @@ export function VersesStats({ exactMatches, versesFound }: Props) {
               : 'text-error-foreground',
           )}
         >
-          {versesFound}
+          <CountUp to={versesFound} />
         </span>
       </div>
       <div>
@@ -29,7 +30,7 @@ export function VersesStats({ exactMatches, versesFound }: Props) {
               : 'text-error-foreground',
           )}
         >
-          {exactMatches}
+          <CountUp to={exactMatches} />
         </span>
       </div>
     </div>

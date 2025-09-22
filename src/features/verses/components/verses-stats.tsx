@@ -11,27 +11,27 @@ export function VersesStats({ exactMatches, versesFound }: Props) {
     <div className='mt-1 flex gap-4 text-xs font-semibold text-muted-foreground uppercase'>
       <div>
         Verses found:{' '}
-        <span
+        <CountUp
+          to={versesFound}
+          duration={0.5}
           className={cn(
             versesFound > 0
               ? 'text-success-foreground'
               : 'text-error-foreground',
           )}
-        >
-          <CountUp to={versesFound} duration={0.5} />
-        </span>
+        />
       </div>
       <div>
         Exact matches:{' '}
-        <span
+        <CountUp
+          to={exactMatches}
+          duration={0.5}
           className={cn(
             exactMatches > 0
               ? 'text-success-foreground'
               : 'text-error-foreground',
           )}
-        >
-          <CountUp to={exactMatches} duration={0.5} />
-        </span>
+        />
       </div>
     </div>
   )

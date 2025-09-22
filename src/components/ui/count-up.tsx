@@ -3,6 +3,14 @@
 import { useInView, useMotionValue, useSpring } from 'motion/react'
 import { useEffect, useRef } from 'react'
 
+/**
+ * CountUp component to animate numbers counting up or down
+ * @see https://www.reactbits.dev/text-animations/count-up
+ *
+ * @example
+ * <CountUp to={100} duration={1} />
+ */
+
 type Props = React.ComponentPropsWithoutRef<'span'> & {
   to: number
   from?: number

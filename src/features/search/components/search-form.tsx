@@ -7,7 +7,8 @@ import { useRouter } from 'next/navigation'
 
 export function SearchForm() {
   const router = useRouter()
-  const { searchInput, setSearchInput } = useSearchInputStore()
+  const { searchInput, setSearchInput, isValidSearch, isSearchEmpty } =
+    useSearchInputStore()
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -34,7 +35,11 @@ export function SearchForm() {
         minLength={3}
         maxLength={200}
       />
-      <Button type='submit' className='w-full min-w-24 xs:w-fit'>
+      <Button
+        type='submit'
+        className='w-full min-w-24 xs:w-fit'
+        disabled={!isValidSearch || isSearchEmpty}
+      >
         Search
       </Button>
     </form>

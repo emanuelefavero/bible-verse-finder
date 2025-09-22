@@ -17,6 +17,7 @@ type Props = React.ComponentPropsWithoutRef<'span'> & {
   direction?: 'up' | 'down'
   delay?: number
   duration?: number
+  stiffness?: number
   className?: string
   startWhen?: boolean
   separator?: string
@@ -30,6 +31,7 @@ export function CountUp({
   direction = 'up',
   delay = 0,
   duration = 2,
+  stiffness = 100,
   className = '',
   startWhen = true,
   separator = '',
@@ -40,11 +42,11 @@ export function CountUp({
   const motionValue = useMotionValue(direction === 'down' ? to : from)
 
   const damping = 20 + 40 * (1 / duration)
-  const stiffness = 100 * (1 / duration)
+  const stiffnessValue = stiffness * (1 / duration)
 
   const springValue = useSpring(motionValue, {
     damping,
-    stiffness,
+    stiffness: stiffnessValue,
   })
 
   const isInView = useInView(ref, { once: true, margin: '0px' })

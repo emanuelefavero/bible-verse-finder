@@ -14,6 +14,7 @@ export function VersesStats({ exactMatches, versesFound }: Props) {
         <CountUp
           to={versesFound}
           duration={0.5}
+          stiffness={300}
           className={cn(
             versesFound > 0
               ? 'text-success-foreground'
@@ -26,6 +27,7 @@ export function VersesStats({ exactMatches, versesFound }: Props) {
         <CountUp
           to={exactMatches}
           duration={0.5}
+          stiffness={200}
           className={cn(
             exactMatches > 0
               ? 'text-success-foreground'

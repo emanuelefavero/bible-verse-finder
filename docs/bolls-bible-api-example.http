@@ -1,2 +1,10 @@
 # Bolls Bible API Example
+
+# Search for the term "god" in the New King James Version (NKJV) of the Bible
 GET https://bolls.life/v2/find/NKJV?search=god&match_case=false&match_whole=true&limit=3&page=1
+
+# Retrieve the list of available Bible versions and their books
+GET https://bolls.life/static/bolls/app/views/translations_books.json
+
+# Retrieve the list of available languages and translations
+GET https://bolls.life/static/bolls/app/views/languages.json

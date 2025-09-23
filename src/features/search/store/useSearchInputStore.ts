@@ -1,6 +1,6 @@
 import { create } from 'zustand'
 
-interface SearchInputState {
+type SearchInputState = {
   searchInput: string
   setSearchInput: (searchInput: string) => void
   clearSearchInput: () => void

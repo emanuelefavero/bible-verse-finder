@@ -1,3 +1,4 @@
+import { Badge } from '@/components/ui/badge'
 import { SpringListItem } from '@/components/ui/spring-list-item'
 import type { Verse } from '@/features/verses/types'
 import { getBookName } from '@/features/verses/utils/bibleBooks'
@@ -24,13 +25,14 @@ export function VerseItem({ verse, index }: Props) {
         <span className='font-medium'>
           {bookName} {verse.chapter}: {verse.verse}
         </span>
-        <span
-          className='rounded bg-muted px-1.5 py-0.5 text-xs'
+        <Badge
+          variant='outline'
+          className='text-muted-foreground'
           title='New King James Version'
           aria-label='New King James Version'
         >
           {verse.translation}
-        </span>
+        </Badge>
       </p>
     </SpringListItem>
   )

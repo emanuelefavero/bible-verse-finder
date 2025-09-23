@@ -21,6 +21,7 @@ export function SpringListItem({
   index,
   children,
   className = '',
+  ...props
 }: Props) {
   const initialPosition = index % 2 === 0 ? 300 : -300 // Alternate left/right
   const motionVariants = {
@@ -36,6 +37,7 @@ export function SpringListItem({
         type: 'spring',
         ...springConfig,
       }}
+      {...props}
     >
       {children}
     </motion.li>

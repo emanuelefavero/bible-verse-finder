@@ -11,6 +11,7 @@ export function SpringList({
   staggerDelay = 0.1,
   children,
   className = '',
+  ...props
 }: Props) {
   const motionVariants = {
     animate: {
@@ -26,6 +27,7 @@ export function SpringList({
       initial='initial'
       animate='animate'
       className={className}
+      {...props}
     >
       {children}
     </motion.ul>

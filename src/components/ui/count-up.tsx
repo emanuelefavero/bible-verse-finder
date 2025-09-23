@@ -37,6 +37,7 @@ export function CountUp({
   separator = '',
   onStart,
   onEnd,
+  ...props
 }: Props) {
   const ref = useRef<HTMLSpanElement>(null)
   const motionValue = useMotionValue(direction === 'down' ? to : from)
@@ -131,5 +132,5 @@ export function CountUp({
     return () => unsubscribe()
   }, [springValue, separator, maxDecimals])
 
-  return <span className={className} ref={ref} />
+  return <span className={className} ref={ref} {...props} />
 }

@@ -1,5 +1,6 @@
 import { SpringListItem } from '@/components/ui/spring-list-item'
 import type { Verse } from '@/features/verses/types'
+import { getBookName } from '@/features/verses/utils/bibleBooks'
 
 type Props = {
   verse: Verse
@@ -7,6 +8,8 @@ type Props = {
 }
 
 export function VerseItem({ verse, index }: Props) {
+  const bookName = getBookName(verse.book) || 'Unknown Book'
+
   return (
     <SpringListItem index={index} className='flex flex-col gap-2 rounded-md'>
       {/* Text */}
@@ -17,9 +20,17 @@ export function VerseItem({ verse, index }: Props) {
       </blockquote>
 
       {/* Citation */}
-      <p className='text-sm text-muted-foreground'>
-        {verse.translation} - Book {verse.book}, Chapter {verse.chapter}, Verse{' '}
-        {verse.verse}
+      <p className='flex items-center gap-2 text-sm text-muted-foreground'>
+        <span className='font-medium'>
+          {bookName} {verse.chapter}: {verse.verse}
+        </span>
+        <span
+          className='rounded bg-muted px-1.5 py-0.5 text-xs'
+          title='New King James Version'
+          aria-label='New King James Version'
+        >
+          {verse.translation}
+        </span>
       </p>
     </SpringListItem>
   )

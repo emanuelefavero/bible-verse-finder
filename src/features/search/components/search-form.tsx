@@ -40,10 +40,14 @@ export function SearchForm() {
       onSubmit={handleSubmit}
       className='flex flex-wrap gap-2 xs:flex-nowrap'
     >
+      <label htmlFor='search' className='sr-only'>
+        Search
+      </label>
       <Input
         className='xs:min-w-3xs'
         type='text'
         name='search'
+        id='search'
         placeholder='Search word or phrase'
         value={input}
         onChange={(e) => setInput(e.target.value)}
@@ -51,6 +55,7 @@ export function SearchForm() {
         minLength={3}
         maxLength={200}
       />
+
       <Button
         type='submit'
         className='w-full min-w-24 xs:w-fit'

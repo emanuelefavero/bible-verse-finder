@@ -1,3 +1,5 @@
+'use client'
+
 import {
   Select,
   SelectContent,
@@ -7,6 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
+import { useTranslationStore } from '@/features/translation/store/useTranslationStore'
 import type { Language } from '@/features/translation/types'
 
 type Props = {
@@ -14,8 +17,10 @@ type Props = {
 }
 
 export function TranslationSelect({ languages }: Props) {
+  const { setSelectedTranslation } = useTranslationStore()
+
   return (
-    <Select>
+    <Select onValueChange={setSelectedTranslation}>
       <SelectTrigger className='min-w-[280px]'>
         <SelectValue placeholder='Select a language' />
       </SelectTrigger>

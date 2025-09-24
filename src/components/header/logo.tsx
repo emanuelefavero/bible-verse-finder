@@ -2,7 +2,6 @@
 
 import { Button } from '@/components/ui/button'
 import { TITLE } from '@/config/app'
-import { useSearchInputStore } from '@/features/search/store/useSearchInputStore'
 import { cn } from '@/lib/utils'
 import { useRouter } from 'next/navigation'
 
@@ -17,12 +16,8 @@ export function Logo({
   ...props
 }: Props) {
   const router = useRouter()
-  const { clearSearchInput } = useSearchInputStore()
 
-  const handleClick = () => {
-    clearSearchInput()
-    router.push('/')
-  }
+  const handleClick = () => router.push('/')
 
   return (
     <Button

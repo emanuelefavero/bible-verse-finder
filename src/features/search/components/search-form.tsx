@@ -2,21 +2,31 @@
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-import { useSearchInputStore } from '@/features/search/store/useSearchInputStore'
+
 import { useRouter, useSearchParams } from 'next/navigation'
+import { useEffect, useState } from 'react'
 
 export function SearchForm() {
   const router = useRouter()
   const searchParams = useSearchParams()
-  const { searchInput, setSearchInput, isValidSearch, isSearchEmpty } =
-    useSearchInputStore()
+  const searchParam = searchParams.get('search') || ''
+  const [input, setInput] = useState(searchParam)
+
+  // Keep input in sync with URL param
+  useEffect(() => {
+    setInput(searchParam)
+  }, [searchParam])
+
+  const trimmed = input.trim()
+  const isValidSearch = trimmed.length >= 3 && trimmed.length <= 200
+  const isSearchEmpty = trimmed.length === 0
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
     const params = new URLSearchParams(searchParams.toString())
 
     if (isValidSearch && !isSearchEmpty) {
-      params.set('search', searchInput)
+      params.set('search', input)
     } else {
       params.delete('search')
     }
@@ -36,8 +46,8 @@ export function SearchForm() {
         type='text'
         name='search'
         placeholder='Search word or phrase'
-        value={searchInput}
-        onChange={(e) => setSearchInput(e.target.value)}
+        value={input}
+        onChange={(e) => setInput(e.target.value)}
         required
         minLength={3}
         maxLength={200}

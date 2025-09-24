@@ -1,3 +1,4 @@
+import { DEFAULT_TRANSLATION } from '@/config/app'
 import { VersesList } from '@/features/verses/components/verses-list'
 import { getVerses } from '@/features/verses/services/api'
 import type { VersesResponse } from '@/features/verses/types'
@@ -10,7 +11,7 @@ type Props = {
 
 export async function VersesLoader({
   search = '',
-  translation = 'NKJV',
+  translation = DEFAULT_TRANSLATION,
 }: Props) {
   const json: VersesResponse = await getVerses(search, translation)
   const {

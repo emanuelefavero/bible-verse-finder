@@ -1,4 +1,4 @@
-import { DESCRIPTION } from '@/config/app'
+import { DEFAULT_TRANSLATION, DESCRIPTION } from '@/config/app'
 import { SearchForm } from '@/features/search/components/search-form'
 import { VersesLoader } from '@/features/verses/components/verses-loader'
 import { Suspense } from 'react'
@@ -11,7 +11,7 @@ type Props = {
 }
 
 export default async function Home({ searchParams }: Props) {
-  const { search, translation } = await searchParams
+  const { search, translation = DEFAULT_TRANSLATION } = await searchParams
 
   return (
     <>
@@ -23,7 +23,7 @@ export default async function Home({ searchParams }: Props) {
 
       {search && (
         <Suspense fallback={<p>Loading verses...</p>}>
-          <VersesLoader search={search} translation={translation || 'NKJV'} />
+          <VersesLoader search={search} translation={translation} />
         </Suspense>
       )}
     </>

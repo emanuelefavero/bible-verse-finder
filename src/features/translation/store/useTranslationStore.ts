@@ -1,3 +1,4 @@
+import { DEFAULT_TRANSLATION } from '@/config/app'
 import { create } from 'zustand'
 
 type TranslationState = {
@@ -6,7 +7,7 @@ type TranslationState = {
 }
 
 export const useTranslationStore = create<TranslationState>((set) => ({
-  selectedTranslation: 'NKJV',
+  selectedTranslation: DEFAULT_TRANSLATION,
   setSelectedTranslation: (translation) =>
     set({ selectedTranslation: translation }),
 }))

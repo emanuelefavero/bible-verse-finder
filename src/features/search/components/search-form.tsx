@@ -14,8 +14,8 @@ export function SearchForm() {
 
   // Update input state when the URL search param changes
   useEffect(() => {
-    if (searchParam !== input) setInput(searchParam)
-  }, [searchParam, input])
+    setInput(searchParam)
+  }, [searchParam])
 
   // Validate search input
   const validation = validate(input)

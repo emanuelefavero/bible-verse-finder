@@ -14,9 +14,10 @@ export function SearchForm() {
 
   // Update input state when the URL search param changes
   useEffect(() => {
-    setInput(searchParam)
-  }, [searchParam])
+    if (searchParam !== input) setInput(searchParam)
+  }, [searchParam, input])
 
+  // Validate search input
   const validation = validate(input)
 
   function handleSubmit(e: React.FormEvent) {
@@ -26,7 +27,7 @@ export function SearchForm() {
     const params = new URLSearchParams(searchParams.toString())
 
     // Update URL search param
-    if (validation.success) params.set('search', input)
+    if (validation.success) params.set('search', input.trim())
     else params.delete('search')
 
     // Keep other existing params if present and navigate

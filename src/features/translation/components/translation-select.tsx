@@ -9,7 +9,7 @@ import {
   SelectTrigger,
   SelectValue,
 } from '@/components/ui/select'
-import { useTranslationStore } from '@/features/translation/store/useTranslationStore'
+import { DEFAULT_TRANSLATION } from '@/config/app'
 import type { Language } from '@/features/translation/types'
 import { useRouter, useSearchParams } from 'next/navigation'
 
@@ -18,12 +18,13 @@ type Props = {
 }
 
 export function TranslationSelect({ languages }: Props) {
-  const { setSelectedTranslation, selectedTranslation } = useTranslationStore()
   const router = useRouter()
   const searchParams = useSearchParams()
+  const selectedTranslation =
+    searchParams.get('translation') || DEFAULT_TRANSLATION
 
+  // Update the URL with the selected translation
   function handleChange(value: string) {
-    setSelectedTranslation(value)
     const params = new URLSearchParams(searchParams.toString())
     params.set('translation', value)
     router.replace('?' + params.toString(), { scroll: false })

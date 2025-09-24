@@ -1,0 +1,52 @@
+[
+  {
+    "language": "English",
+    "translations": [
+      {
+        "short_name": "KJV",
+        "full_name": "King James Version, 1769",
+        "updated": 1750968212682
+      },
+      {
+        "short_name": "NKJV",
+        "full_name": "New King James Version, 1982",
+        "updated": 1635188106109
+      },
+      {
+        "short_name": "CJB",
+        "full_name": "The Complete Jewish Bible, 1998",
+        "updated": 1635188106109
+      },
+      {
+        "short_name": "ESV",
+        "full_name": "English Standard Version, 2001-2016",
+        "updated": 1635188106109
+      },
+      {
+        "short_name": "NIV2011",
+        "full_name": "New International Version, 2011",
+        "updated": 1626349711821
+      },
+      {
+        "short_name": "NLT",
+        "full_name": "New Living Translation, 2015",
+        "updated": 1635188106109
+      },
+      {
+        "short_name": "CSB17",
+        "full_name": "Christian Standard Bible, 2017",
+        "updated": 1723748851755
+      }
+    ]
+  },
+  {
+    "language": "Italian",
+    "translations": [
+      {
+        "short_name": "NR06",
+        "full_name": "Nuova Riveduta, 2006",
+        "updated": 1591185595149
+      }
+    ]
+  }
+]

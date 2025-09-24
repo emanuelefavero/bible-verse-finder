@@ -5,10 +5,14 @@ import { VersesStats } from './verses-stats'
 
 type Props = {
   search?: string
+  translation?: string
 }
 
-export async function VersesLoader({ search = '' }: Props) {
-  const json: VersesResponse = await getVerses(search)
+export async function VersesLoader({
+  search = '',
+  translation = 'NKJV',
+}: Props) {
+  const json: VersesResponse = await getVerses(search, translation)
   const {
     results: verses = [],
     exact_matches: exactMatches = 0,

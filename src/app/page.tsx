@@ -6,11 +6,12 @@ import { Suspense } from 'react'
 type Props = {
   searchParams: Promise<{
     search?: string
+    translation?: string
   }>
 }
 
 export default async function Home({ searchParams }: Props) {
-  const { search } = await searchParams
+  const { search, translation } = await searchParams
 
   return (
     <>
@@ -22,7 +23,7 @@ export default async function Home({ searchParams }: Props) {
 
       {search && (
         <Suspense fallback={<p>Loading verses...</p>}>
-          <VersesLoader search={search} />
+          <VersesLoader search={search} translation={translation || 'NKJV'} />
         </Suspense>
       )}
     </>

@@ -6,7 +6,7 @@ type TranslationState = {
 }
 
 export const useTranslationStore = create<TranslationState>((set) => ({
-  selectedTranslation: 'KJV',
+  selectedTranslation: 'NKJV',
   setSelectedTranslation: (translation) =>
     set({ selectedTranslation: translation }),
 }))

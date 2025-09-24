@@ -3,20 +3,27 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { useSearchInputStore } from '@/features/search/store/useSearchInputStore'
-import { useRouter } from 'next/navigation'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 export function SearchForm() {
   const router = useRouter()
+  const searchParams = useSearchParams()
   const { searchInput, setSearchInput, isValidSearch, isSearchEmpty } =
     useSearchInputStore()
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+    const params = new URLSearchParams(searchParams.toString())
+
     if (isValidSearch && !isSearchEmpty) {
-      router.push(`/?search=${encodeURIComponent(searchInput)}`)
+      params.set('search', searchInput)
     } else {
-      router.push('/')
+      params.delete('search')
     }
+
+    // Keep other existing params if present
+    const url = params.toString() ? `/?${params.toString()}` : '/'
+    router.push(url)
   }
 
   return (

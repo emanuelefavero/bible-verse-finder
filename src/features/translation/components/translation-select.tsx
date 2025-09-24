@@ -11,6 +11,7 @@ import {
 } from '@/components/ui/select'
 import { useTranslationStore } from '@/features/translation/store/useTranslationStore'
 import type { Language } from '@/features/translation/types'
+import { useRouter, useSearchParams } from 'next/navigation'
 
 type Props = {
   languages: Language[]
@@ -18,9 +19,18 @@ type Props = {
 
 export function TranslationSelect({ languages }: Props) {
   const { setSelectedTranslation, selectedTranslation } = useTranslationStore()
+  const router = useRouter()
+  const searchParams = useSearchParams()
+
+  function handleChange(value: string) {
+    setSelectedTranslation(value)
+    const params = new URLSearchParams(searchParams.toString())
+    params.set('translation', value)
+    router.replace('?' + params.toString(), { scroll: false })
+  }
 
   return (
-    <Select onValueChange={setSelectedTranslation} value={selectedTranslation}>
+    <Select onValueChange={handleChange} value={selectedTranslation}>
       <SelectTrigger className='min-w-[280px]'>
         <SelectValue placeholder='Select a language' />
       </SelectTrigger>

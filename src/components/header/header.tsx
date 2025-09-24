@@ -1,6 +1,6 @@
 import { ModeToggle } from '@/features/theme/mode-toggle'
 import { TranslationSelect } from '@/features/translation/components/translation-select'
-import { languages } from '@/features/translation/data/languages'
+import languages from '@/features/translation/data/languages.json'
 import { Logo } from './logo'
 
 export function Header() {

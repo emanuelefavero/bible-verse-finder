@@ -2,7 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
-
+import { validate } from '@/features/search/lib/zod'
 import { useRouter, useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
@@ -12,26 +12,24 @@ export function SearchForm() {
   const searchParam = searchParams.get('search') || ''
   const [input, setInput] = useState(searchParam)
 
-  // Keep input in sync with URL param
+  // Update input state when the URL search param changes
   useEffect(() => {
     setInput(searchParam)
   }, [searchParam])
 
-  const trimmed = input.trim()
-  const isValidSearch = trimmed.length >= 3 && trimmed.length <= 200
-  const isSearchEmpty = trimmed.length === 0
+  const validation = validate(input)
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
+
+    // Get current URL search params
     const params = new URLSearchParams(searchParams.toString())
 
-    if (isValidSearch && !isSearchEmpty) {
-      params.set('search', input)
-    } else {
-      params.delete('search')
-    }
+    // Update URL search param
+    if (validation.success) params.set('search', input)
+    else params.delete('search')
 
-    // Keep other existing params if present
+    // Keep other existing params if present and navigate
     const url = params.toString() ? `/?${params.toString()}` : '/'
     router.push(url)
   }
@@ -55,7 +53,7 @@ export function SearchForm() {
       <Button
         type='submit'
         className='w-full min-w-24 xs:w-fit'
-        disabled={!isValidSearch || isSearchEmpty}
+        disabled={!validation.success}
       >
         Search
       </Button>

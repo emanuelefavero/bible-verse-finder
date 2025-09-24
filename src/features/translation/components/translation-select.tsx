@@ -17,10 +17,10 @@ type Props = {
 }
 
 export function TranslationSelect({ languages }: Props) {
-  const { setSelectedTranslation } = useTranslationStore()
+  const { setSelectedTranslation, selectedTranslation } = useTranslationStore()
 
   return (
-    <Select onValueChange={setSelectedTranslation}>
+    <Select onValueChange={setSelectedTranslation} value={selectedTranslation}>
       <SelectTrigger className='min-w-[280px]'>
         <SelectValue placeholder='Select a language' />
       </SelectTrigger>

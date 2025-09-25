@@ -13,26 +13,29 @@ export function useTranslation() {
   )
 
   useEffect(() => {
+    // Helpers
+    function saveTranslation(translation: string) {
+      setSelectedTranslation(translation)
+      localStorage.setItem('translation', translation)
+    }
+
+    function setTranslationUrl(translation: string) {
+      setSelectedTranslation(translation)
+      const params = new URLSearchParams(searchParams.toString())
+      params.set('translation', translation)
+      router.replace('?' + params.toString(), { scroll: false })
+    }
+    // ---
+
     const savedTranslation = localStorage.getItem('translation')
 
-    // If there's a translation in the URL, use it and save to localStorage
+    // Sync state and storage with URL param if present
     if (urlTranslation) {
-      setSelectedTranslation(urlTranslation)
-      localStorage.setItem('translation', urlTranslation)
-
-      // If no URL param but there's a saved translation in localStorage, use it
+      saveTranslation(urlTranslation)
     } else if (savedTranslation) {
-      setSelectedTranslation(savedTranslation)
-
-      // Update URL to reflect the saved translation
-      const params = new URLSearchParams(searchParams.toString())
-      params.set('translation', savedTranslation)
-      router.replace('?' + params.toString(), { scroll: false })
-
-      // If no URL param and no saved translation, use default and save it
+      setTranslationUrl(savedTranslation)
     } else {
-      setSelectedTranslation(DEFAULT_TRANSLATION)
-      localStorage.setItem('translation', DEFAULT_TRANSLATION)
+      saveTranslation(DEFAULT_TRANSLATION)
     }
   }, [urlTranslation, searchParams, router])
 

@@ -2,6 +2,7 @@ import { Badge } from '@/components/ui/badge'
 import { SpringListItem } from '@/components/ui/spring-list-item'
 import type { Verse } from '@/features/verses/types'
 import { getBookName } from '@/features/verses/utils/bibleBooks'
+import { cleanKJVText } from '@/features/verses/utils/formatText'
 
 type Props = {
   verse: Verse
@@ -10,13 +11,14 @@ type Props = {
 
 export function VerseItem({ verse, index }: Props) {
   const bookName = getBookName(verse.book) || 'Unknown Book'
+  const text = cleanKJVText(verse.text, verse.translation) // Clean text if KJV
 
   return (
     <SpringListItem index={index} className='flex flex-col gap-2 rounded-md'>
       {/* Text */}
       <blockquote className='border-l-2 pl-6 italic'>
         <span aria-hidden='true'>&quot;</span>
-        <span dangerouslySetInnerHTML={{ __html: verse.text }} />
+        <span dangerouslySetInnerHTML={{ __html: text }} />
         <span aria-hidden='true'>&quot;</span>
       </blockquote>
 

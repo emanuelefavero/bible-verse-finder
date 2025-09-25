@@ -3,14 +3,17 @@
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { validate } from '@/features/search/lib/zod'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useDeleteUrlParam } from '@/features/url/hooks/useDeleteUrlParam'
+import { useSetUrlParam } from '@/features/url/hooks/useSetUrlParam'
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export function SearchForm() {
-  const router = useRouter()
   const searchParams = useSearchParams()
   const searchParam = searchParams.get('search') || ''
   const [input, setInput] = useState(searchParam)
+  const setUrlParam = useSetUrlParam()
+  const deleteUrlParam = useDeleteUrlParam()
 
   // Update input state when the URL search param changes
   useEffect(() => {
@@ -23,16 +26,22 @@ export function SearchForm() {
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
 
-    // Get current URL search params
-    const params = new URLSearchParams(searchParams.toString())
+    if (validation.success) {
+      setUrlParam({ param: 'search', value: input.trim() })
+    } else {
+      deleteUrlParam({ param: 'search' })
+    }
 
-    // Update URL search param
-    if (validation.success) params.set('search', input.trim())
-    else params.delete('search')
+    // // Get current URL search params
+    // const params = new URLSearchParams(searchParams.toString())
 
-    // Keep other existing params if present and navigate
-    const url = params.toString() ? `/?${params.toString()}` : '/'
-    router.push(url)
+    // // Update URL search param
+    // if (validation.success) params.set('search', input.trim())
+    // else params.delete('search')
+
+    // // Keep other existing params if present and navigate
+    // const url = params.toString() ? `/?${params.toString()}` : '/'
+    // router.push(url)
   }
 
   return (

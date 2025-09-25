@@ -1,52 +1,47 @@
 'use client'
 
 import { DEFAULT_TRANSLATION } from '@/config/app'
-import { useRouter, useSearchParams } from 'next/navigation'
+import { useSetUrlParam } from '@/features/url/hooks/useSetUrlParam'
+import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
 export function useTranslation() {
-  const router = useRouter()
   const searchParams = useSearchParams()
   const urlTranslation = searchParams.get('translation')
   const [selectedTranslation, setSelectedTranslation] = useState(
     urlTranslation || DEFAULT_TRANSLATION,
   )
+  const setUrlParam = useSetUrlParam()
 
   useEffect(() => {
-    // Helpers
-    function saveTranslation(translation: string) {
-      setSelectedTranslation(translation)
-      localStorage.setItem('translation', translation)
-    }
-
-    function setTranslationUrl(translation: string) {
-      setSelectedTranslation(translation)
-      const params = new URLSearchParams(searchParams.toString())
-      params.set('translation', translation)
-      router.replace('?' + params.toString(), { scroll: false })
-    }
-    // ---
-
     const savedTranslation = localStorage.getItem('translation')
 
-    // Sync state and storage with URL param if present
+    // If there's a translation in the URL, save it to localStorage
     if (urlTranslation) {
-      saveTranslation(urlTranslation)
+      setSelectedTranslation(urlTranslation)
+      localStorage.setItem('translation', urlTranslation)
+
+      // If there's no translation in the URL but one in localStorage, use that and update the URL
     } else if (savedTranslation) {
-      setTranslationUrl(savedTranslation)
+      setSelectedTranslation(savedTranslation)
+      setUrlParam({
+        param: 'translation',
+        value: savedTranslation,
+        history: false,
+      })
+
+      // If neither, use the default translation
     } else {
-      saveTranslation(DEFAULT_TRANSLATION)
+      setSelectedTranslation(DEFAULT_TRANSLATION)
+      localStorage.setItem('translation', DEFAULT_TRANSLATION)
     }
-  }, [urlTranslation, searchParams, router])
+  }, [urlTranslation, setUrlParam])
 
   // Update the URL and localStorage with the selected translation
   function handleChange(value: string) {
     setSelectedTranslation(value)
     localStorage.setItem('translation', value)
-
-    const params = new URLSearchParams(searchParams.toString())
-    params.set('translation', value)
-    router.replace('?' + params.toString(), { scroll: false })
+    setUrlParam({ param: 'translation', value, history: false })
   }
 
   return { selectedTranslation, handleChange }

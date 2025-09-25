@@ -20,8 +20,7 @@ export function SearchForm() {
     setInput(searchParam)
   }, [searchParam])
 
-  // Validate search input
-  const validation = validate(input)
+  const validation = validate(input) // Validate input
 
   function handleSubmit(e: React.FormEvent) {
     e.preventDefault()
@@ -31,17 +30,6 @@ export function SearchForm() {
     } else {
       deleteUrlParam({ param: 'search' })
     }
-
-    // // Get current URL search params
-    // const params = new URLSearchParams(searchParams.toString())
-
-    // // Update URL search param
-    // if (validation.success) params.set('search', input.trim())
-    // else params.delete('search')
-
-    // // Keep other existing params if present and navigate
-    // const url = params.toString() ? `/?${params.toString()}` : '/'
-    // router.push(url)
   }
 
   return (

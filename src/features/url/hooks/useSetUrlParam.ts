@@ -1,25 +1,28 @@
 'use client'
 
 import type { SetUrlParamsOptions } from '@/features/url/types'
-import { useRouter, useSearchParams } from 'next/navigation'
-
-// TODO add params in current route instead of assuming home page, add optional route param that if present uses that instead of /
+import { usePathname, useRouter, useSearchParams } from 'next/navigation'
 
 export function useSetUrlParam() {
   const router = useRouter()
   const searchParams = useSearchParams()
+  const pathname = usePathname()
 
   function setUrlParam({
     param,
     value,
     history = true,
     scroll = false,
+    route,
   }: SetUrlParamsOptions) {
     const params = new URLSearchParams(searchParams.toString())
     params.set(param, value) // Update the specified param
 
     // Keep other existing params if present
-    const url = params.toString() ? `/?${params.toString()}` : '/'
+    const currentRoute = route || pathname
+    const url = params.toString()
+      ? `${currentRoute}?${params.toString()}`
+      : currentRoute
 
     if (history) {
       // Update URL without adding a new entry to the browser history

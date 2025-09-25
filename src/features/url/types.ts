@@ -4,9 +4,11 @@ export type SetUrlParamsOptions = {
   value: string
   history?: boolean
   scroll?: boolean
+  route?: string
 }
 export type DeleteUrlParamsOptions = {
   param: UrlParams
   history?: boolean
   scroll?: boolean
+  route?: string
 }

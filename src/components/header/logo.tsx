@@ -26,7 +26,14 @@ export function Logo({
       onClick={onClick ?? handleClick}
       {...props}
     >
-      {TITLE}
+      <span className='hidden 3xs:inline-block'>{TITLE}</span>
+      <span
+        className='inline-block 3xs:hidden'
+        title={TITLE}
+        aria-label={TITLE}
+      >
+        BVF
+      </span>
     </Button>
   )
 }

@@ -21,8 +21,12 @@ export function TranslationSelect({ languages }: Props) {
 
   return (
     <Select onValueChange={handleChange} value={selectedTranslation}>
-      <SelectTrigger className='min-w-[280px]'>
-        <SelectValue placeholder='Select a language' />
+      <SelectTrigger>
+        <SelectValue
+          placeholder='Select version'
+          className='hidden 2xs:inline-block xs:w-[175px] sm:w-fit sm:whitespace-normal'
+        />
+        <SelectValue placeholder='Version' className='xs:hidden' />
       </SelectTrigger>
       <SelectContent>
         {languages.map((language) => (
@@ -33,7 +37,16 @@ export function TranslationSelect({ languages }: Props) {
                 key={translation.short_name}
                 value={translation.short_name}
               >
-                {translation.full_name}
+                <span className='hidden sm:inline-block'>
+                  {translation.full_name}
+                </span>
+                <span
+                  className='sm:hidden'
+                  title={translation.full_name}
+                  aria-label={translation.full_name}
+                >
+                  {translation.short_name}
+                </span>
               </SelectItem>
             ))}
           </SelectGroup>

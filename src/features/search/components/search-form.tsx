@@ -2,6 +2,7 @@
 
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
+import { Label } from '@/components/ui/label'
 import { validate } from '@/features/search/lib/zod'
 import { useDeleteUrlParam } from '@/features/url/hooks/useDeleteUrlParam'
 import { useSetUrlParam } from '@/features/url/hooks/useSetUrlParam'
@@ -37,9 +38,9 @@ export function SearchForm() {
       onSubmit={handleSubmit}
       className='flex flex-wrap gap-2 xs:flex-nowrap'
     >
-      <label htmlFor='search' className='sr-only'>
-        Search
-      </label>
+      <Label htmlFor='search' className='sr-only mr-1'>
+        Search:
+      </Label>
       <Input
         className='xs:min-w-3xs'
         type='text'

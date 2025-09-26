@@ -1,6 +1,9 @@
+import type { TranslationName } from '@/features/translation/types'
+
+// VERSES
 export type Verse = {
   pk: number
-  translation: string
+  translation: TranslationName
   book: number
   chapter: number
   verse: number
@@ -18,3 +21,13 @@ export type VersesResponse = {
   exact_matches: number
   total: number
 }
+
+// BOOKS
+export type Book = {
+  bookid: number
+  name: string
+  chronorder: number
+  chapters: number
+}
+
+export type TranslationsBooks = Record<TranslationName, Book[]>

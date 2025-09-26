@@ -1,8 +1,8 @@
 import { Badge } from '@/components/ui/badge'
 import { SpringListItem } from '@/components/ui/spring-list-item'
 import type { Verse } from '@/features/verses/types'
-import { getBookName } from '@/features/verses/utils/bibleBooks'
 import { cleanKJVText } from '@/features/verses/utils/formatText'
+import { getBookName } from '@/features/verses/utils/getBookName'
 
 type Props = {
   verse: Verse
@@ -10,7 +10,10 @@ type Props = {
 }
 
 export function VerseItem({ verse, index }: Props) {
-  const bookName = getBookName(verse.book) || 'Unknown Book'
+  const bookName = getBookName({
+    translation: verse.translation,
+    bookId: verse.book,
+  })
   const text = cleanKJVText(verse.text, verse.translation) // Clean text if KJV
 
   return (

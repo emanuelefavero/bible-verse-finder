@@ -1,6 +1,5 @@
-import type { TranslationName } from '@/features/translation/types'
-import translationsBooksJson from '@/features/verses/data/translations_books.json'
-import type { TranslationsBooks } from '@/features/verses/types'
+import translationsBooksJson from '@/features/books/data/translations_books.json'
+import type { TranslationName, TranslationsBooks } from '@/features/books/types'
 
 const translationsBooks = translationsBooksJson as TranslationsBooks
 

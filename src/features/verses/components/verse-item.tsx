@@ -1,8 +1,8 @@
 import { Badge } from '@/components/ui/badge'
 import { SpringListItem } from '@/components/ui/spring-list-item'
+import { getBookName } from '@/features/books/utils/getBookName'
 import type { Verse } from '@/features/verses/types'
 import { cleanKJVText } from '@/features/verses/utils/formatText'
-import { getBookName } from '@/features/verses/utils/getBookName'
 
 type Props = {
   verse: Verse

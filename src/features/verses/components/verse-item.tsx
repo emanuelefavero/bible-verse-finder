@@ -1,6 +1,7 @@
 import { Badge } from '@/components/ui/badge'
 import { SpringListItem } from '@/components/ui/spring-list-item'
 import { getBookName } from '@/features/books/utils/getBookName'
+import { getTranslationFullName } from '@/features/translation/utils/getTranslationFullName'
 import type { Verse } from '@/features/verses/types'
 import { cleanKJVText } from '@/features/verses/utils/formatText'
 
@@ -15,6 +16,8 @@ export function VerseItem({ verse, index }: Props) {
     bookId: verse.book,
   })
   const text = cleanKJVText(verse.text, verse.translation) // Clean text if KJV
+  const translationFullName =
+    getTranslationFullName(verse.translation) ?? verse.translation
 
   return (
     <SpringListItem index={index} className='flex flex-col gap-2 rounded-md'>
@@ -33,8 +36,8 @@ export function VerseItem({ verse, index }: Props) {
         <Badge
           variant='outline'
           className='text-muted-foreground'
-          title='New King James Version'
-          aria-label='New King James Version'
+          title={translationFullName}
+          aria-label={translationFullName}
         >
           {verse.translation}
         </Badge>

@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label'
 import { validate } from '@/features/search/lib/zod'
 import { useDeleteUrlParam } from '@/features/url/hooks/useDeleteUrlParam'
 import { useSetUrlParam } from '@/features/url/hooks/useSetUrlParam'
+import { cn } from '@/lib/utils'
 import { X } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
@@ -44,7 +45,7 @@ export function SearchForm() {
       </Label>
       <div className='relative'>
         <Input
-          className='xs:min-w-3xs'
+          className={cn('xs:min-w-3xs', input && 'pr-12')}
           type='text'
           name='search'
           id='search'
@@ -60,7 +61,7 @@ export function SearchForm() {
             type='button'
             variant='ghost'
             size='icon'
-            className='absolute top-1/2 right-1 -translate-y-1/2 rounded-full p-1 opacity-50 hover:opacity-100 focus:opacity-100'
+            className='absolute top-1/2 right-1 -translate-y-1/2 border-l-2 border-transparent opacity-50 hover:bg-transparent hover:opacity-100 focus:opacity-100 focus-visible:border-l-2 focus-visible:border-input focus-visible:ring-0 dark:hover:bg-transparent'
             onClick={() => {
               setInput('')
               deleteUrlParam({ param: 'search' })

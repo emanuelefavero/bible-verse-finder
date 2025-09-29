@@ -6,6 +6,7 @@ import { Label } from '@/components/ui/label'
 import { validate } from '@/features/search/lib/zod'
 import { useDeleteUrlParam } from '@/features/url/hooks/useDeleteUrlParam'
 import { useSetUrlParam } from '@/features/url/hooks/useSetUrlParam'
+import { X } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
@@ -41,18 +42,35 @@ export function SearchForm() {
       <Label htmlFor='search' className='sr-only mr-1'>
         Search:
       </Label>
-      <Input
-        className='xs:min-w-3xs'
-        type='text'
-        name='search'
-        id='search'
-        placeholder='Search word or phrase'
-        value={input}
-        onChange={(e) => setInput(e.target.value)}
-        required
-        minLength={3}
-        maxLength={200}
-      />
+      <div className='relative'>
+        <Input
+          className='xs:min-w-3xs'
+          type='text'
+          name='search'
+          id='search'
+          placeholder='Search word or phrase'
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          required
+          minLength={3}
+          maxLength={200}
+        />
+        {input && (
+          <Button
+            type='button'
+            variant='ghost'
+            size='icon'
+            className='absolute top-1/2 right-1 -translate-y-1/2 rounded-full p-1 opacity-50 hover:opacity-100 focus:opacity-100'
+            onClick={() => {
+              setInput('')
+              deleteUrlParam({ param: 'search' })
+            }}
+          >
+            <X className='h-4 w-4' />
+            <span className='sr-only'>Clear</span>
+          </Button>
+        )}
+      </div>
 
       <Button
         type='submit'

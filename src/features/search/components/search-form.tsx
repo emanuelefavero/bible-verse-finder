@@ -9,7 +9,7 @@ import { useSetUrlParam } from '@/features/url/hooks/useSetUrlParam'
 import { cn } from '@/lib/utils'
 import { X } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 
 export function SearchForm() {
   const searchParams = useSearchParams()
@@ -17,6 +17,12 @@ export function SearchForm() {
   const [input, setInput] = useState(searchParam)
   const setUrlParam = useSetUrlParam()
   const deleteUrlParam = useDeleteUrlParam()
+  const inputRef = useRef<HTMLInputElement>(null)
+
+  // Focus the input element when the component mounts
+  useEffect(() => {
+    inputRef.current?.focus()
+  }, [])
 
   // Update input state when the URL search param changes
   useEffect(() => {
@@ -35,6 +41,12 @@ export function SearchForm() {
     }
   }
 
+  function handleClear() {
+    setInput('')
+    deleteUrlParam({ param: 'search' })
+    inputRef.current?.focus()
+  }
+
   return (
     <form
       onSubmit={handleSubmit}
@@ -45,6 +57,7 @@ export function SearchForm() {
       </Label>
       <div className='relative'>
         <Input
+          ref={inputRef}
           className={cn('xs:min-w-3xs', input && 'pr-12')}
           type='text'
           name='search'
@@ -62,10 +75,7 @@ export function SearchForm() {
             variant='ghost'
             size='icon'
             className='absolute top-1/2 right-1 -translate-y-1/2 border-l-2 border-transparent opacity-50 hover:bg-transparent hover:opacity-100 focus:opacity-100 focus-visible:border-l-2 focus-visible:border-input focus-visible:ring-0 dark:hover:bg-transparent'
-            onClick={() => {
-              setInput('')
-              deleteUrlParam({ param: 'search' })
-            }}
+            onClick={handleClear}
           >
             <X className='h-4 w-4' />
             <span className='sr-only'>Clear</span>

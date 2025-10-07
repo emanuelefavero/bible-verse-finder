@@ -1,3 +1,4 @@
+import { Spinner } from '@/components/icons/spinner'
 import { DEFAULT_TRANSLATION, DESCRIPTION } from '@/config/app'
 import { SearchForm } from '@/features/search/components/search-form'
 import { VersesLoader } from '@/features/verses/components/verses-loader'
@@ -22,7 +23,7 @@ export default async function Home({ searchParams }: Props) {
       <SearchForm />
 
       {search && (
-        <Suspense fallback={<p>Loading verses...</p>}>
+        <Suspense fallback={<Spinner label='Loading verses...' />}>
           <VersesLoader search={search} translation={translation} />
         </Suspense>
       )}

@@ -1,7 +1,7 @@
-import { Spinner } from '@/components/icons/spinner'
 import { DEFAULT_TRANSLATION, DESCRIPTION } from '@/config/app'
 import { SearchForm } from '@/features/search/components/search-form'
 import { VersesLoader } from '@/features/verses/components/verses-loader'
+import { VersesLoaderSkeleton } from '@/features/verses/components/verses-loader-skeleton'
 import { Suspense } from 'react'
 
 type Props = {
@@ -23,7 +23,7 @@ export default async function Home({ searchParams }: Props) {
       <SearchForm />
 
       {search && (
-        <Suspense fallback={<Spinner label='Loading verses...' />}>
+        <Suspense fallback={<VersesLoaderSkeleton />}>
           <VersesLoader search={search} translation={translation} />
         </Suspense>
       )}

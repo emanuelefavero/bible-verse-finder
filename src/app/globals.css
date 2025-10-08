@@ -147,6 +147,18 @@
   /* --breakpoint-2xl: 96rem; 1536px */
   --breakpoint-3xl: 120rem; /* 1920px */
   --breakpoint-4xl: 160rem; /* 2560px */
+
+  /* ANIMATIONS */
+  /* Fade in */
+  --animate-fade-in: fadeIn 250ms ease-in-out;
+  @keyframes fadeIn {
+    0% {
+      opacity: 0;
+    }
+    100% {
+      opacity: 1;
+    }
+  }
 }
 
 @layer base {

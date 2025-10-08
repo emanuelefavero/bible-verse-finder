@@ -2,7 +2,7 @@ export function VersesLoaderSkeleton() {
   const placeholderItems = Array.from({ length: 6 })
 
   return (
-    <div className='flex flex-col gap-10'>
+    <div className='flex animate-fade-in flex-col gap-10'>
       <div className='flex flex-wrap justify-center gap-6 text-xs font-semibold text-muted-foreground uppercase'>
         <div className='flex items-center gap-2'>
           <span className='h-4 w-[98px] animate-pulse rounded-md bg-muted' />

@@ -67,7 +67,7 @@ export function SearchForm() {
       <Label htmlFor='search' className='sr-only mr-1'>
         Search:
       </Label>
-      <div className='relative'>
+      <div className='relative w-full'>
         <Input
           ref={inputRef}
           className={cn('xs:min-w-3xs', input && 'pr-12')}

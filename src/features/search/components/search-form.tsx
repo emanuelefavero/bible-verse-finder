@@ -1,5 +1,6 @@
 'use client'
 
+import { Spinner } from '@/components/icons/spinner'
 import { Button } from '@/components/ui/button'
 import { Input } from '@/components/ui/input'
 import { Label } from '@/components/ui/label'
@@ -9,7 +10,7 @@ import { useSetUrlParam } from '@/features/url/hooks/useSetUrlParam'
 import { cn } from '@/lib/utils'
 import { X } from 'lucide-react'
 import { useSearchParams } from 'next/navigation'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useTransition } from 'react'
 
 export function SearchForm() {
   const searchParams = useSearchParams()
@@ -18,6 +19,7 @@ export function SearchForm() {
   const setUrlParam = useSetUrlParam()
   const deleteUrlParam = useDeleteUrlParam()
   const inputRef = useRef<HTMLInputElement>(null)
+  const [isPending, startTransition] = useTransition()
 
   // Focus the input element when the component mounts
   useEffect(() => {
@@ -35,16 +37,26 @@ export function SearchForm() {
     e.preventDefault()
 
     if (validation.success) {
-      setUrlParam({ param: 'search', value: input.trim() })
+      startTransition(() => {
+        setUrlParam({ param: 'search', value: input.trim() })
+      })
     } else {
-      deleteUrlParam({ param: 'search' })
+      startTransition(() => {
+        deleteUrlParam({ param: 'search' })
+      })
     }
   }
 
   function handleClear() {
     setInput('')
-    deleteUrlParam({ param: 'search' })
+    startTransition(() => {
+      deleteUrlParam({ param: 'search' })
+    })
     inputRef.current?.focus()
+  }
+
+  function inputAlreadySearched() {
+    return input.trim().toLowerCase() === searchParam.trim().toLowerCase()
   }
 
   return (
@@ -86,9 +98,13 @@ export function SearchForm() {
       <Button
         type='submit'
         className='w-full min-w-24 xs:w-fit'
-        disabled={!validation.success}
+        disabled={!validation.success || isPending || inputAlreadySearched()}
       >
-        Search
+        {isPending ? (
+          <Spinner className='mr-2 inline-block h-4 w-4' />
+        ) : (
+          'Search'
+        )}
       </Button>
     </form>
   )

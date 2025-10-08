@@ -18,7 +18,7 @@ export function VersesStats({ exactMatches, versesFound }: Props) {
     exactMatches === biggerValue ? lowerStiffness : higherStiffness
 
   return (
-    <div className='mt-1 flex gap-2 text-xs font-semibold text-muted-foreground uppercase'>
+    <div className='mt-1 flex flex-wrap gap-4 w-full justify-center text-xs font-semibold text-muted-foreground uppercase'>
       <motion.div
         initial={{ opacity: 0, x: -72 }}
         animate={{ opacity: 1, x: 0 }}

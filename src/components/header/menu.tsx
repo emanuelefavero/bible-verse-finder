@@ -12,6 +12,7 @@ import { ModeToggle } from '@/features/theme/mode-toggle'
 import { TranslationSelect } from '@/features/translation/components/translation-select'
 import languages from '@/features/translation/data/languages.json'
 import type { Language } from '@/features/translation/types'
+import { Menu as MenuIcon } from 'lucide-react'
 
 function DesktopMenu() {
   return (
@@ -27,7 +28,10 @@ function MobileMenu() {
     <DropdownMenu>
       {/* Mobile menu button */}
       <DropdownMenuTrigger asChild>
-        <Button variant='outline'>Menu</Button>
+        <Button variant='outline'>
+          <span className='sr-only'>Open menu</span>
+          <MenuIcon className='h-5 w-5' />
+        </Button>
       </DropdownMenuTrigger>
 
       {/* Mobile menu content */}

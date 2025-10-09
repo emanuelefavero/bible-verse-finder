@@ -26,9 +26,9 @@ export function Logo({
       onClick={onClick ?? handleClick}
       {...props}
     >
-      <span className='hidden 3xs:inline-block'>{TITLE}</span>
+      <span className='hidden 4xs:inline-block'>{TITLE}</span>
       <span
-        className='inline-block 3xs:hidden'
+        className='inline-block 4xs:hidden'
         title={TITLE}
         aria-label={TITLE}
       >

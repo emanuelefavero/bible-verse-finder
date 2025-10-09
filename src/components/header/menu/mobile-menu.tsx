@@ -1,3 +1,5 @@
+'use client'
+
 import { Button } from '@/components/ui/button'
 import {
   DropdownMenu,
@@ -8,17 +10,24 @@ import {
   DropdownMenuSeparator,
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu'
-import { Menu as MenuIcon } from 'lucide-react'
+import { cn } from '@/lib/utils'
+import { Menu as MenuIcon, X } from 'lucide-react'
+import { useState } from 'react'
 import { menuItems } from './data/menu-items'
 
 export function MobileMenu() {
+  const [open, setOpen] = useState(false)
+
   return (
-    <DropdownMenu>
+    <DropdownMenu open={open} onOpenChange={(open) => setOpen(open)}>
       {/* Trigger */}
       <DropdownMenuTrigger asChild>
-        <Button variant='outline'>
-          <span className='sr-only'>Open menu</span>
-          <MenuIcon className='h-5 w-5' />
+        <Button
+          variant='outline'
+          className={cn(open && 'text-error-foreground')}
+        >
+          <span className='sr-only'>{open ? 'Close' : 'Open'} menu</span>
+          {open ? <X /> : <MenuIcon />}
         </Button>
       </DropdownMenuTrigger>
 

@@ -14,11 +14,24 @@ import languages from '@/features/translation/data/languages.json'
 import type { Language } from '@/features/translation/types'
 import { Menu as MenuIcon } from 'lucide-react'
 
+const menuItems = [
+  {
+    id: 'translation',
+    label: 'Translation',
+    component: <TranslationSelect languages={languages as Language[]} />,
+  },
+  {
+    id: 'theme',
+    component: <ModeToggle />,
+  },
+]
+
 function DesktopMenu() {
   return (
     <nav className='flex items-center gap-2 rounded-md' aria-label='Menu'>
-      <TranslationSelect languages={languages as Language[]} />
-      <ModeToggle />
+      {menuItems.map((item) => (
+        <div key={item.id}>{item.component}</div>
+      ))}
     </nav>
   )
 }
@@ -26,7 +39,7 @@ function DesktopMenu() {
 function MobileMenu() {
   return (
     <DropdownMenu>
-      {/* Mobile menu button */}
+      {/* Trigger */}
       <DropdownMenuTrigger asChild>
         <Button variant='outline'>
           <span className='sr-only'>Open menu</span>
@@ -34,23 +47,24 @@ function MobileMenu() {
         </Button>
       </DropdownMenuTrigger>
 
-      {/* Mobile menu content */}
+      {/* Content */}
       <DropdownMenuContent className='relative right-2 w-fit' align='start'>
-        <DropdownMenuLabel>Settings</DropdownMenuLabel>
-        {/* Translation Select */}
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <TranslationSelect languages={languages as Language[]} />
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
-        <DropdownMenuSeparator />
+        <DropdownMenuLabel className='font-bold'>Settings</DropdownMenuLabel>
 
-        {/* Mode Toggle */}
-        <DropdownMenuGroup>
-          <DropdownMenuItem>
-            <ModeToggle />
-          </DropdownMenuItem>
-        </DropdownMenuGroup>
+        {/* Items */}
+        {menuItems.map((item, index) => (
+          <div key={item.id}>
+            <DropdownMenuGroup key={item.id}>
+              {item.label && (
+                <DropdownMenuLabel className='font-normal'>
+                  {item.label}
+                </DropdownMenuLabel>
+              )}
+              <DropdownMenuItem>{item.component}</DropdownMenuItem>
+            </DropdownMenuGroup>
+            {index < menuItems.length - 1 && <DropdownMenuSeparator />}
+          </div>
+        ))}
       </DropdownMenuContent>
     </DropdownMenu>
   )

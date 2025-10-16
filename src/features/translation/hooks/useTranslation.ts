@@ -6,35 +6,52 @@ import { useSetUrlParam } from '@/features/url/hooks/useSetUrlParam'
 import { useSearchParams } from 'next/navigation'
 import { useEffect, useState } from 'react'
 
+// Helper to get initial translation value
+function getInitialTranslation(urlTranslation: string | null): string {
+  // Prioritize URL translation if valid
+  if (urlTranslation && validate(urlTranslation).success) {
+    return urlTranslation
+  }
+
+  // Check localStorage
+  const savedTranslation = localStorage.getItem('translation')
+  if (savedTranslation && validate(savedTranslation).success) {
+    return savedTranslation
+  }
+
+  // Fall back to default
+  return DEFAULT_TRANSLATION
+}
+
 export function useTranslation() {
   const searchParams = useSearchParams()
   const urlTranslation = searchParams.get('translation')
-  const [selectedTranslation, setSelectedTranslation] = useState(
-    urlTranslation || DEFAULT_TRANSLATION,
+  const [selectedTranslation, setSelectedTranslation] = useState(() =>
+    getInitialTranslation(urlTranslation),
   )
   const setUrlParam = useSetUrlParam()
 
+  // Sync to localStorage when URL translation changes
   useEffect(() => {
-    const savedTranslation = localStorage.getItem('translation')
-
-    // If there's a translation in the URL, save it to localStorage
     if (urlTranslation && validate(urlTranslation).success) {
-      setSelectedTranslation(urlTranslation)
       localStorage.setItem('translation', urlTranslation)
+    }
+  }, [urlTranslation])
 
-      // If there's no translation in the URL but one in localStorage, use that and update the URL
-    } else if (savedTranslation && validate(savedTranslation).success) {
-      setSelectedTranslation(savedTranslation)
-      setUrlParam({
-        param: 'translation',
-        value: savedTranslation,
-        history: false,
-      })
-
-      // If neither, use the default translation
-    } else {
-      setSelectedTranslation(DEFAULT_TRANSLATION)
-      localStorage.setItem('translation', DEFAULT_TRANSLATION)
+  // Sync URL when there's no URL param but localStorage has a value
+  useEffect(() => {
+    if (!urlTranslation) {
+      const savedTranslation = localStorage.getItem('translation')
+      if (savedTranslation && validate(savedTranslation).success) {
+        setUrlParam({
+          param: 'translation',
+          value: savedTranslation,
+          history: false,
+        })
+      } else {
+        // No saved translation, ensure localStorage has default
+        localStorage.setItem('translation', DEFAULT_TRANSLATION)
+      }
     }
   }, [urlTranslation, setUrlParam])
 
